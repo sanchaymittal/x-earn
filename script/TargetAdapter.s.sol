@@ -12,7 +12,7 @@ contract DeployTarget is Script {
     vm.startBroadcast();
 
     IConnext connext = IConnext(_connext);
-    new Target(_source, _originDomain, connext);
+    new TargetAdapter(_source, _originDomain, connext);
 
     vm.stopBroadcast();
   }
