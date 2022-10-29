@@ -24,7 +24,6 @@ contract HubAdapter {
             revert HubAdapter__onlyCellar_notCellar();
         _;
     }
-    // event XCallTargetAdapter(address to);
 
     constructor(IConnext _connext, address _cellar) {
         connext = _connext;
@@ -34,18 +33,18 @@ contract HubAdapter {
     /**
      * @notice Cross-domain strategy execution at target adaptor.
      * @dev Initiates the Connext bridging flow with calldata to be used at the target adaptor.
-     * @param destination - The unique identifier of destination domain
+     * @param destinationDomain - The unique identifier of destination domain
      * @param asset - The address of Asset
      * @param amount - Amount of the asset
-     * @param to - The address of the TargetAdapter at destination domain
-     * @param callData - calldata of the target function at destination domain 
+     * @param target - The address of the TargetAdapter at destination domain
+     * @param callData - calldata of the target function at destination domain
      */
 
     function xCallTargetAdapter(
-        uint32 destination,
+        uint32 destinationDomain,
         address asset,
         uint256 amount,
-        address to,
+        address target,
         bytes memory callData
     ) external payable onlyCeller {
         // function xcall(
@@ -58,6 +57,31 @@ contract HubAdapter {
         //   bytes calldata _callData
         // ) external payable returns (bytes32);
 
-        connext.xcall(destination, to, asset, address(0), amount, 0, callData);
+        connext.xcall(destinationDomain, target, asset, address(0), amount, 0, callData);
+    }
+
+    /** @notice Updates a greeting variable on the HelloTarget contract.
+     * @param target Address of the HelloTarget contract.
+     * @param destinationDomain The destination domain ID.
+     * @param newGreeting New greeting to update to.
+     * @param relayerFee The fee offered to relayers. On testnet, this can be 0.
+     */
+    function updateGreeting(
+        address target,
+        uint32 destinationDomain,
+        string memory newGreeting,
+        uint256 relayerFee
+    ) external payable {
+        // Encode the data needed for the target contract call.
+        bytes memory callData = abi.encode(newGreeting);
+        connext.xcall{value: relayerFee}(
+            destinationDomain, // _destination: Domain ID of the destination chain
+            target, // _to: address of the target contract
+            address(0), // _asset: address of the token contract
+            msg.sender, // _delegate: address that can revert or forceLocal on destination
+            0, // _amount: amount of tokens to transfer
+            30, // _slippage: the max slippage the user will accept in BPS (0.3%)
+            callData // _callData: the encoded calldata to send
+        );
     }
 }
