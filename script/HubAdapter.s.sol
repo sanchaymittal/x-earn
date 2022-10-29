@@ -9,8 +9,9 @@ contract DeploySource is Script {
   function run(address _connext, address _cellar) external {
     vm.startBroadcast();
 
-    IConnext connext = IConnext(_connext, _cellar);
-    new HubAdapter(connext);
+    IConnext connext = IConnext(_connext);
+
+    new HubAdapter(connext, _cellar);
 
     vm.stopBroadcast();
   }
