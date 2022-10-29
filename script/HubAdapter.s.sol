@@ -10,7 +10,7 @@ contract DeploySource is Script {
     vm.startBroadcast();
 
     IConnext connext = IConnext(_connext);
-    new Source(connext, _delegate);
+    new HubAdapter(connext, _delegate);
 
     vm.stopBroadcast();
   }
