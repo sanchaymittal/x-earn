@@ -24,7 +24,7 @@ contract HubAdapter {
             revert HubAdapter__onlyCellar_notCellar();
         _;
     }
-    event UpdateInitiated(address to, uint256 newValue, bool authenticated);
+    // event XCallTargetAdapter(address to);
 
     constructor(IConnext _connext, address _cellar) {
         connext = _connext;
@@ -32,9 +32,15 @@ contract HubAdapter {
     }
 
     /**
-   * Cross-domain update of a value on a target contract.
-   @dev Initiates the Connext bridging flow with calldata to be used on the target contract.
-   */
+     * @notice Cross-domain strategy execution at target adaptor.
+     * @dev Initiates the Connext bridging flow with calldata to be used at the target adaptor.
+     * @param destination - The unique identifier of destination domain
+     * @param asset - The address of Asset
+     * @param amount - Amount of the asset
+     * @param to - The address of the TargetAdapter at destination domain
+     * @param callData - calldata of the target function at destination domain 
+     */
+
     function xCallTargetAdapter(
         uint32 destination,
         address asset,
