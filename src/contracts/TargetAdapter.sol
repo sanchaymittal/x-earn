@@ -45,8 +45,6 @@ contract TargetAdapter {
         _;
     }
 
-    event UpdateCompleted(address sender, uint256 newValue, bool authenticated);
-
     constructor(
         address _originContract,
         uint32 _originDomain,
