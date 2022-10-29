@@ -30,6 +30,15 @@ contract TargetAdapter {
     IConnext public immutable connext;
 
     error TargetAdapter__onlyExecutor_notExecutor();
+    error TargetAdapter__onlyOriginSender_notOriginSender();
+
+    modifier onlyOriginSender() {
+        if (
+            originSender(msg.data) != originContract &&
+            origin(msg.data) != originDomain
+        ) revert TargetAdapter__onlyOriginSender_notOriginSender();
+        _;
+    }
 
     // A modifier for authenticated function calls.
     // Note: This is an important security consideration. If your target
@@ -37,11 +46,8 @@ contract TargetAdapter {
     //       that the originating call is from the correct domain and contract.
     //       Also, it must be coming from the Connext Executor address.
     modifier onlyExecutor() {
-        if (
-            originSender(msg.data) != originContract &&
-            origin(msg.data) != originDomain &&
-            msg.sender != address(connext)
-        ) revert TargetAdapter__onlyExecutor_notExecutor();
+        if (msg.sender != address(connext))
+            revert TargetAdapter__onlyExecutor_notExecutor();
         _;
     }
 
@@ -56,7 +62,35 @@ contract TargetAdapter {
     }
 
     // Authenticated function
-    function action() external onlyExecutor {}
+    function action() external onlyExecutor {
+
+        // TODO: call to Cellar Adaptor
+        
+    }
+
+    function authAction() external onlyExecutor onlyOriginSender {}
+
+    function withdraw() external onlyExecutor onlyOriginSender {
+        address asset = address(0);
+        uint256 amount = 0;
+
+        // TODO: call to Cellar Adaptor
+        // {asset , amount } =
+
+        _withdrawToOrigin(asset, amount);
+    }
+
+    function _withdrawToOrigin(address _asset, uint256 _amount) internal {
+        connext.xcall(
+            originDomain,
+            originContract,
+            _asset,
+            address(0),
+            _amount,
+            0,
+            ""
+        );
+    }
 
     // ============ INTERNAL ============
 
