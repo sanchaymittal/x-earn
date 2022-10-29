@@ -6,10 +6,10 @@ pragma solidity ^0.8.14;
 import {IConnext} from "nxtp/core/connext/interfaces/IConnext.sol";
 
 /**
- * @title Source
- * @notice Example contract for cross-domain calls (xcalls).
+ * @title HubAdapters
+ * @notice TODO
  */
-contract Source {
+contract HubAdapter {
   event UpdateInitiated(address to, uint256 newValue, bool authenticated);
 
   IConnext public immutable connext;
