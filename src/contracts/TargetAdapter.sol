@@ -2,13 +2,14 @@
 pragma solidity ^0.8.14;
 
 import {IConnext} from "nxtp/core/connext/interfaces/IConnext.sol";
+import {IXReceiver} from "@connext/nxtp-contracts/contracts/core/connext/interfaces/IXReceiver.sol";
 import {TypedMemView} from "nxtp/shared/libraries/TypedMemView.sol";
 
 /**
  * @title Target
  * @notice A contrived example target contract.
  */
-contract TargetAdapter {
+contract TargetAdapter is IXReceiver {
     // ============ Libraries ============
     using TypedMemView for bytes;
     using TypedMemView for bytes29;
@@ -29,14 +30,21 @@ contract TargetAdapter {
     // The address of the Connext Executor contract
     IConnext public immutable connext;
 
+    event XReceive(
+        bytes32 _transferId,
+        uint256 _amount,
+        address _asset,
+        address _originSender,
+        uint32 _origin,
+        bytes _callData
+    );
+
     error TargetAdapter__onlyExecutor_notExecutor();
     error TargetAdapter__onlyOriginSender_notOriginSender();
 
-    modifier onlyOriginSender() {
-        if (
-            originSender(msg.data) != originContract &&
-            origin(msg.data) != originDomain
-        ) revert TargetAdapter__onlyOriginSender_notOriginSender();
+    modifier onlyOriginSender(address _originSender) {
+        if (_originSender != originContract)
+            revert TargetAdapter__onlyOriginSender_notOriginSender();
         _;
     }
 
@@ -45,8 +53,8 @@ contract TargetAdapter {
     //       contract function is meant to be authenticated, it must check
     //       that the originating call is from the correct domain and contract.
     //       Also, it must be coming from the Connext Executor address.
-    modifier onlyExecutor() {
-        if (msg.sender != address(connext))
+    modifier onlyExecutor(uint32 _origin) {
+        if (msg.sender != address(connext) && _origin != originDomain)
             revert TargetAdapter__onlyExecutor_notExecutor();
         _;
     }
@@ -61,23 +69,27 @@ contract TargetAdapter {
         connext = _connext;
     }
 
-    // Authenticated function
-    function action() external onlyExecutor {
+    // example implementation
+    function xReceive(
+        bytes32 _transferId,
+        uint256 _amount,
+        address _asset,
+        address _originSender,
+        uint32 _origin,
+        bytes memory _callData
+    ) external returns (bytes memory) {
+        // Unpack the _callData
+        string memory newGreeting = abi.decode(_callData, (string));
+        _updateGreeting(newGreeting);
 
-        // TODO: call to Cellar Adaptor
-        
-    }
-
-    function authAction() external onlyExecutor onlyOriginSender {}
-
-    function withdraw() external onlyExecutor onlyOriginSender {
-        address asset = address(0);
-        uint256 amount = 0;
-
-        // TODO: call to Cellar Adaptor
-        // {asset , amount } =
-
-        _withdrawToOrigin(asset, amount);
+        emit XReceive(
+            _transferId,
+            _amount,
+            _asset,
+            _originSender,
+            _origin,
+            _callData
+        );
     }
 
     function _withdrawToOrigin(address _asset, uint256 _amount) internal {
@@ -93,6 +105,13 @@ contract TargetAdapter {
     }
 
     // ============ INTERNAL ============
+
+    /** @notice Internal function to update the greeting.
+     * @param _newGreeting Calldata containing the new greeting.
+     */
+    function _updateGreeting(string memory _newGreeting) internal pure {
+        string memory newGreeting = _newGreeting;
+    }
 
     /**
      * @notice Parses the origin domain from the msg.data
