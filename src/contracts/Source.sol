@@ -4,35 +4,22 @@
 pragma solidity ^0.8.14;
 
 import {IConnext} from "nxtp/core/connext/interfaces/IConnext.sol";
-// import {ICallback} from "nxtp/core/promise/interfaces/ICallback.sol";
-import {CallParams, XCallArgs} from "nxtp/core/connext/libraries/LibConnextStorage.sol";
 
 /**
  * @title Source
  * @notice Example contract for cross-domain calls (xcalls).
  */
-contract Source is ICallback {
+contract Source {
   event UpdateInitiated(address to, uint256 newValue, bool authenticated);
-  event CallbackCalled(bytes32 transferId, bool success, uint256 newValue); 
 
-  IConnextHandler public immutable connext;
-  address public immutable promiseRouter;
+  IConnext public immutable connext;
 
-  // A modifier for permissioning the callback.
-  // Note: This is an important security consideration. Only the PromiseRouter (the
-  //       Connext contract that executes the callback function) should be able to
-  //       call the callback function.
-  modifier onlyPromiseRouter () {
-    require(
-      msg.sender == address(promiseRouter),
-      "Expected PromiseRouter"
-    );
-    _;
-  }
+  address public delegate;
 
-  constructor(IConnextHandler _connext, address _promiseRouter) {
+
+  constructor(IConnext _connext, address _delegate) {
     connext = _connext;
-    promiseRouter = _promiseRouter;
+    delegate = _delegate;
   }
 
   /**
@@ -40,62 +27,33 @@ contract Source is ICallback {
    @dev Initiates the Connext bridging flow with calldata to be used on the target contract.
    */
   function xChainUpdate(
+    uint32 destination,
     address to,
-    uint32 originDomain,
-    uint32 destinationDomain,
-    uint256 newValue,
-    bool authenticated
+    address asset,
+    uint256 amount
   ) external payable {
-    bytes4 selector;
-    bool forceSlow;
+    // bytes memory callData = abi.encodeWithSelector(selector, );
+    bytes memory callData = "0x";
 
-    // Encode function of the target contract (from Target.sol)
-    if (authenticated) {
-      selector = bytes4(keccak256("updateValueAuthenticated(uint256)"));
-      forceSlow = true;
-    } else {
-      selector = bytes4(keccak256("updateValueUnauthenticated(uint256)"));
-      forceSlow = false;
-    }
-    bytes memory callData = abi.encodeWithSelector(selector, newValue);
 
-    CallParams memory callParams = CallParams({
-      to: to,
-      callData: callData,
-      originDomain: originDomain,
-      destinationDomain: destinationDomain,
-      agent: msg.sender, // address allowed to execute transaction on destination side in addition to relayers
-      recovery: msg.sender, // fallback address to send funds to if execution fails on destination side
-      forceSlow: forceSlow, // option to force slow path instead of paying 0.05% fee on fast liquidity transfers
-      receiveLocal: false, // option to receive the local bridge-flavored asset instead of the adopted asset
-      callback: address(this), // this contract implements the callback
-      callbackFee: 0, // fee paid to relayers for the callback; no fees on testnet
-      relayerFee: 0, // fee paid to relayers for the forward call; no fees on testnet
-      destinationMinOut: 0 // not sending funds so minimum can be 0
-    });
+  // function xcall(
+  //   uint32 _destination,
+  //   address _to,
+  //   address _asset,
+  //   address _delegate,
+  //   uint256 _amount,
+  //   uint256 _slippage,
+  //   bytes calldata _callData
+  // ) external payable returns (bytes32);
 
-    XCallArgs memory xcallArgs = XCallArgs({
-      params: callParams,
-      transactingAsset: address(0), // 0 address is the native gas token
-      transactingAmount: 0, // not sending funds with this calldata-only xcall
-      originMinOut: 0 // not sending funds so minimum can be 0
-    });
-
-    connext.xcall(xcallArgs);
-
-    emit UpdateInitiated(to, newValue, authenticated);
-  }
-
-  /**
-   * Callback function required for contracts implementing the ICallback interface.
-   @dev This function is called to handle return data from the destination domain.
-   */ 
-  function callback(
-    bytes32 transferId,
-    bool success,
-    bytes memory data
-  ) external onlyPromiseRouter {
-    uint256 newValue = abi.decode(data, (uint256));
-    emit CallbackCalled(transferId, success, newValue);
+    connext.xcall(
+      destination,
+      to,
+      asset,
+      delegate,
+      amount,
+      0,
+      callData
+    );
   }
 }
