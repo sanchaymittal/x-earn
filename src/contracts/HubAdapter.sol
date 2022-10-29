@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-pragma solidity ^0.8.14;
+pragma solidity ^0.8.15;
 
 import {IConnext} from "nxtp/core/connext/interfaces/IConnext.sol";
-import {Cellar} from "cellar/src/base/Cellar.sol";
 
 /**
  * @title HubAdapters
@@ -11,7 +10,7 @@ import {Cellar} from "cellar/src/base/Cellar.sol";
 contract HubAdapter {
     IConnext public immutable connext;
 
-    Cellar public immutable celler;
+    address public immutable cellar;
 
     error HubAdapter__onlyCellar_notCellar();
 
@@ -27,7 +26,7 @@ contract HubAdapter {
     }
     event UpdateInitiated(address to, uint256 newValue, bool authenticated);
 
-    constructor(IConnext _connext, ICellar _cellar) {
+    constructor(IConnext _connext, address _cellar) {
         connext = _connext;
         cellar = _cellar;
     }
