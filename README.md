@@ -20,7 +20,7 @@ Sommelier reads 1000x earning positions from multiple domains (chains, rollups e
 <br/>
 
 
-UI interaction:
+# UI
 
 - Connect Wallet
 - Click on preferred position, and complete transaction on wallet
@@ -34,10 +34,20 @@ UI interaction:
 </p>
 <br/>
 
+
+<br/>
+<p align="center">
+<a href="https://github.com/sanchaymittal/x-earn" target="_blank">
+<img src="./img/demo.mov" alt="demo">
+</a>
+</p>
+<br/>
+
 Foundry Starter Kit is a repo that shows developers how to quickly build, test, and deploy smart contracts with one of the fastest frameworks out there, [foundry](https://github.com/gakonst/foundry)!
 
 
 - [Home](#X-Earn)
+- [UI] (#UI)
 - [Getting Started](#getting-started)
   - [Requirements](#requirements)
   - [Quickstart](#quickstart)
