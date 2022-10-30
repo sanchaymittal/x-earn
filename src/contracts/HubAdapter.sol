@@ -10,24 +10,34 @@ import {IConnext} from "nxtp/core/connext/interfaces/IConnext.sol";
 contract HubAdapter {
     IConnext public immutable connext;
 
-    address public immutable cellar;
+    // address public immutable cellar;
 
-    error HubAdapter__onlyCellar_notCellar();
+    // error HubAdapter__onlyCellar_notCellar();
 
     // A modifier for authenticated function calls.
     // Note: This is an important security consideration. If your target
     //       contract function is meant to be authenticated, it must check
     //       that the originating call is from the correct domain and contract.
     //       Also, it must be coming from the Connext Executor address.
-    modifier onlyCeller() {
-        if (msg.sender != address(cellar))
-            revert HubAdapter__onlyCellar_notCellar();
-        _;
+    // modifier onlyCeller() {
+    //     if (msg.sender != address(cellar))
+    //         revert HubAdapter__onlyCellar_notCellar();
+    //     _;
+    // }
+
+    constructor(IConnext _connext) {
+        connext = _connext;
+        // cellar = _cellar;
     }
 
-    constructor(IConnext _connext, address _cellar) {
-        connext = _connext;
-        cellar = _cellar;
+    /**
+     * @notice Struct used to make calls to adaptors.
+     * @param adaptor the address of the adaptor to make calls to
+     * @param the abi encoded function calls to make to the `adaptor`
+     */
+    struct AdaptorCall {
+        address adaptor;
+        bytes[] callData;
     }
 
     /**
@@ -37,7 +47,7 @@ contract HubAdapter {
      * @param asset - The address of Asset
      * @param amount - Amount of the asset
      * @param target - The address of the TargetAdapter at destination domain
-     * @param callData - calldata of the target function at destination domain
+     * @param data - Struct AdaptorCall array used to make calls to adaptors.
      */
 
     function xCallTargetAdapter(
@@ -45,8 +55,8 @@ contract HubAdapter {
         address asset,
         uint256 amount,
         address target,
-        bytes memory callData
-    ) external payable onlyCeller {
+        AdaptorCall[] memory data
+    ) external payable {
         // function xcall(
         //   uint32 _destination,
         //   address _to,
@@ -57,7 +67,20 @@ contract HubAdapter {
         //   bytes calldata _callData
         // ) external payable returns (bytes32);
 
-        connext.xcall(destinationDomain, target, asset, address(0), amount, 0, callData);
+        bytes memory callData = abi.encodeWithSelector(
+            bytes4(keccak256("callOnAdaptor(AdaptorCall[])")),
+            data
+        );
+
+        connext.xcall(
+            destinationDomain,
+            target,
+            asset,
+            address(0),
+            amount,
+            0,
+            callData
+        );
     }
 
     /** @notice Updates a greeting variable on the HelloTarget contract.
