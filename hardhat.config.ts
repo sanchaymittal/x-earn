@@ -271,7 +271,7 @@ export const hardhatNetworks = {
         url:
             urlOverride ||
             process.env.CRONOS_TESTNET_PROVIDER_URL ||
-            "https://evm-t3.cronos.org",
+            "https://testnet.cronoslabs.com/v1/320a9adc6ac7a081240762ce00843d49",
         companionNetworks: {
             hub: "goerli",
         },
