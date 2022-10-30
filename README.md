@@ -1,11 +1,35 @@
-*Note: This repo has been recently updated for Goerli*
-
 # X-Earn
+
+Money legos for Scaling algorithmic crypto portfolio to Cross-Chain using #Connext!!!
+
+- Money Legos
+- High Security
+- UX friendly: one-click only
+- Cross-Chain (xcall me)
+
+TLDR;
+Sommelier reads 1000x earning positions from multiple domains (chains, rollups etc.) sends the request at `Cellar`, and `HubAdapter` sends funds at best position using connext bridge and it will open it in 2-3mins. Real time monitoring happens through FileCoin and callbacks are enables at bridge to periodically send updates on position on Mainnet.
+
 
 <br/>
 <p align="center">
-<a href="https://chain.link" target="_blank">
+<a href="https://github.com/sanchaymittal/x-earn" target="_blank">
 <img src="./img/flowchart@2x.png" alt="flowchart">
+</a>
+</p>
+<br/>
+
+
+UI interaction:
+
+- Connect Wallet
+- Click on preferred position, and complete transaction on wallet
+- Vola!! After 2-3mins, we are earning the best APY from whole ecosystem.
+
+<br/>
+<p align="center">
+<a href="https://github.com/sanchaymittal/x-earn" target="_blank">
+<img src="./img/ui.png" alt="flowchart">
 </a>
 </p>
 <br/>
@@ -13,7 +37,7 @@
 Foundry Starter Kit is a repo that shows developers how to quickly build, test, and deploy smart contracts with one of the fastest frameworks out there, [foundry](https://github.com/gakonst/foundry)!
 
 
-- [Foundry Starter Kit](#foundry-starter-kit)
+- [Home](#X-Earn)
 - [Getting Started](#getting-started)
   - [Requirements](#requirements)
   - [Quickstart](#quickstart)
