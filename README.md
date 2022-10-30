@@ -1,16 +1,14 @@
 *Note: This repo has been recently updated for Goerli*
 
-# Foundry Starter Kit
+# X-Earn
 
 <br/>
 <p align="center">
 <a href="https://chain.link" target="_blank">
-<img src="./img/chainlink-foundry.png" width="225" alt="Chainlink Foundry logo">
+<img src="./img/flowchart.png" width="225" alt="flowchart">
 </a>
 </p>
 <br/>
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/smartcontractkit/foundry-starter-kit)
 
 Foundry Starter Kit is a repo that shows developers how to quickly build, test, and deploy smart contracts with one of the fastest frameworks out there, [foundry](https://github.com/gakonst/foundry)!
 
