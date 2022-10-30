@@ -1,0 +1,517 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "home",
+      "outputs": [
+        {
+          "internalType": "contract IOutbox",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_potentialReplica",
+          "type": "address"
+        }
+      ],
+      "name": "isReplica",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "localDomain",
+      "outputs": [
+        {
+          "internalType": "uint32",
+          "name": "",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "home()": "9fa92f9d",
+    "isReplica(address)": "5190bc53",
+    "localDomain()": "8d3638f4"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.15+commit.e14f2714\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"home\",\"outputs\":[{\"internalType\":\"contract IOutbox\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_potentialReplica\",\"type\":\"address\"}],\"name\":\"isReplica\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"localDomain\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"This interface only contains the functions needed for the `XAppConnectionClient` will interface with.\",\"kind\":\"dev\",\"methods\":{\"home()\":{\"details\":\"The local inbox contract is a SpokeConnector with AMBs, and a Home contract with nomad\",\"returns\":{\"_0\":\"The local inbox contract\"}},\"isReplica(address)\":{\"returns\":{\"_0\":\"True if _potentialReplica is an enrolled Replica\"}},\"localDomain()\":{\"returns\":{\"_0\":\"The local domain\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"home()\":{\"notice\":\"Get the local inbox contract from the xAppConnectionManager\"},\"isReplica(address)\":{\"notice\":\"Determine whether _potentialReplica is an enrolled Replica from the xAppConnectionManager\"},\"localDomain()\":{\"notice\":\"Get the local domain from the xAppConnectionManager\"}},\"notice\":\"Each router extends the `XAppConnectionClient` contract. This contract allows an admin to call `setXAppConnectionManager` to update the underlying pointers to the messaging inboxes (Replicas) and outboxes (Homes).\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IConnectorManager.sol\":\"IConnectorManager\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":20000},\"remappings\":[\":@aave/=lib/aave-v3-core/\",\":@chainlink/=lib/cellar-contracts/lib/chainlink/\",\":@clones/=lib/clones-with-immutable-args/src/\",\":@connext/nxtp-contracts/contracts/=lib/nxtp/packages/deployments/contracts/contracts/\",\":@ds-test/=lib/cellar-contracts/lib/forge-std/lib/ds-test/src/\",\":@ds/=lib/ds-test/src/\",\":@forge-std/=lib/cellar-contracts/lib/forge-std/src/\",\":@hardhat/=lib/hardhat/\",\":@openzeppelin/contracts-upgradeable/=lib/nxtp/packages/deployments/contracts/lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":@solmate/=lib/cellar-contracts/lib/solmate/src/\",\":@solmate/=lib/solmate/src/\",\":@std/=lib/forge-std/src/\",\":@uniswap/v3-core/=lib/cellar-contracts/lib/v3-core/\",\":@uniswap/v3-periphery/=lib/cellar-contracts/lib/v3-periphery/\",\":@uniswapV3C/=lib/cellar-contracts/lib/v3-core.git/contracts/\",\":@uniswapV3P/=lib/cellar-contracts/lib/v3-periphery.git/contracts/\",\":cellar-contracts/=lib/cellar-contracts/src/\",\":cellar/=lib/cellar-contracts/\",\":chainlink/=lib/cellar-contracts/lib/chainlink/contracts/src/v0.8/dev/vendor/@arbitrum/nitro-contracts/src/\",\":ds-test/=lib/solmate/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\",\":nxtp/=lib/nxtp/packages/deployments/contracts/contracts/\",\":openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/contracts/\",\":solmate/=lib/solmate/src/\",\":v3-core.git/=lib/cellar-contracts/lib/v3-core.git/contracts/\",\":v3-periphery.git/=lib/cellar-contracts/lib/v3-periphery.git/contracts/\"]},\"sources\":{\"lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IConnectorManager.sol\":{\"keccak256\":\"0xa2c9a88a7b76a89615fe199d8a78878e5deb8dd13b036a86b575d31966beab1a\",\"license\":\"MIT OR Apache-2.0\",\"urls\":[\"bzz-raw://1fa56558c8a516354e84af9b1a9485d9eb4db3c83be3c29ef2742f32bdb0797f\",\"dweb:/ipfs/QmWiYnbhbrmjVbBztBHJ2sz5NFMikvrGdCMgsdTB6rjicj\"]},\"lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IOutbox.sol\":{\"keccak256\":\"0xe6a213bd3c9e0c4dcf0e982cdef2a6a613a49b7bca3d6ad662c179e509de6c2b\",\"license\":\"MIT OR Apache-2.0\",\"urls\":[\"bzz-raw://cbca26ae40f9cf044896e3681c20a60f563a3e35f7f6bdb9365370fe874cfa9f\",\"dweb:/ipfs/QmaLNyciLs4MdHykXidZpFaXx97numdULMy5i5kAdy8KhU\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.15+commit.e14f2714"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "home",
+          "outputs": [
+            {
+              "internalType": "contract IOutbox",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_potentialReplica",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "isReplica",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "localDomain",
+          "outputs": [
+            {
+              "internalType": "uint32",
+              "name": "",
+              "type": "uint32"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "home()": {
+            "details": "The local inbox contract is a SpokeConnector with AMBs, and a Home contract with nomad",
+            "returns": {
+              "_0": "The local inbox contract"
+            }
+          },
+          "isReplica(address)": {
+            "returns": {
+              "_0": "True if _potentialReplica is an enrolled Replica"
+            }
+          },
+          "localDomain()": {
+            "returns": {
+              "_0": "The local domain"
+            }
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "home()": {
+            "notice": "Get the local inbox contract from the xAppConnectionManager"
+          },
+          "isReplica(address)": {
+            "notice": "Determine whether _potentialReplica is an enrolled Replica from the xAppConnectionManager"
+          },
+          "localDomain()": {
+            "notice": "Get the local domain from the xAppConnectionManager"
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":@aave/=lib/aave-v3-core/",
+        ":@chainlink/=lib/cellar-contracts/lib/chainlink/",
+        ":@clones/=lib/clones-with-immutable-args/src/",
+        ":@connext/nxtp-contracts/contracts/=lib/nxtp/packages/deployments/contracts/contracts/",
+        ":@ds-test/=lib/cellar-contracts/lib/forge-std/lib/ds-test/src/",
+        ":@ds/=lib/ds-test/src/",
+        ":@forge-std/=lib/cellar-contracts/lib/forge-std/src/",
+        ":@hardhat/=lib/hardhat/",
+        ":@openzeppelin/contracts-upgradeable/=lib/nxtp/packages/deployments/contracts/lib/openzeppelin-contracts-upgradeable/contracts/",
+        ":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+        ":@solmate/=lib/cellar-contracts/lib/solmate/src/",
+        ":@solmate/=lib/solmate/src/",
+        ":@std/=lib/forge-std/src/",
+        ":@uniswap/v3-core/=lib/cellar-contracts/lib/v3-core/",
+        ":@uniswap/v3-periphery/=lib/cellar-contracts/lib/v3-periphery/",
+        ":@uniswapV3C/=lib/cellar-contracts/lib/v3-core.git/contracts/",
+        ":@uniswapV3P/=lib/cellar-contracts/lib/v3-periphery.git/contracts/",
+        ":cellar-contracts/=lib/cellar-contracts/src/",
+        ":cellar/=lib/cellar-contracts/",
+        ":chainlink/=lib/cellar-contracts/lib/chainlink/contracts/src/v0.8/dev/vendor/@arbitrum/nitro-contracts/src/",
+        ":ds-test/=lib/solmate/lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/",
+        ":nxtp/=lib/nxtp/packages/deployments/contracts/contracts/",
+        ":openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+        ":openzeppelin-contracts/=lib/openzeppelin-contracts/contracts/",
+        ":solmate/=lib/solmate/src/",
+        ":v3-core.git/=lib/cellar-contracts/lib/v3-core.git/contracts/",
+        ":v3-periphery.git/=lib/cellar-contracts/lib/v3-periphery.git/contracts/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 20000
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IConnectorManager.sol": "IConnectorManager"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IConnectorManager.sol": {
+        "keccak256": "0xa2c9a88a7b76a89615fe199d8a78878e5deb8dd13b036a86b575d31966beab1a",
+        "urls": [
+          "bzz-raw://1fa56558c8a516354e84af9b1a9485d9eb4db3c83be3c29ef2742f32bdb0797f",
+          "dweb:/ipfs/QmWiYnbhbrmjVbBztBHJ2sz5NFMikvrGdCMgsdTB6rjicj"
+        ],
+        "license": "MIT OR Apache-2.0"
+      },
+      "lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IOutbox.sol": {
+        "keccak256": "0xe6a213bd3c9e0c4dcf0e982cdef2a6a613a49b7bca3d6ad662c179e509de6c2b",
+        "urls": [
+          "bzz-raw://cbca26ae40f9cf044896e3681c20a60f563a3e35f7f6bdb9365370fe874cfa9f",
+          "dweb:/ipfs/QmaLNyciLs4MdHykXidZpFaXx97numdULMy5i5kAdy8KhU"
+        ],
+        "license": "MIT OR Apache-2.0"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IConnectorManager.sol",
+    "id": 23783,
+    "exportedSymbols": {
+      "IConnectorManager": [
+        23782
+      ],
+      "IOutbox": [
+        23811
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "46:1149:15",
+    "nodes": [
+      {
+        "id": 23757,
+        "nodeType": "PragmaDirective",
+        "src": "46:23:15",
+        "literals": [
+          "solidity",
+          "0.8",
+          ".15"
+        ]
+      },
+      {
+        "id": 23759,
+        "nodeType": "ImportDirective",
+        "src": "71:38:15",
+        "absolutePath": "lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IOutbox.sol",
+        "file": "./IOutbox.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 23783,
+        "sourceUnit": 23812,
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 23758,
+              "name": "IOutbox",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": 23811,
+              "src": "79:7:15",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "id": 23782,
+        "nodeType": "ContractDefinition",
+        "src": "466:728:15",
+        "nodes": [
+          {
+            "id": 23767,
+            "nodeType": "FunctionDefinition",
+            "src": "723:48:15",
+            "documentation": {
+              "id": 23761,
+              "nodeType": "StructuredDocumentation",
+              "src": "498:222:15",
+              "text": " @notice Get the local inbox contract from the xAppConnectionManager\n @return The local inbox contract\n @dev The local inbox contract is a SpokeConnector with AMBs, and a\n Home contract with nomad"
+            },
+            "functionSelector": "9fa92f9d",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "home",
+            "nameLocation": "732:4:15",
+            "parameters": {
+              "id": 23762,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "736:2:15"
+            },
+            "returnParameters": {
+              "id": 23766,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23765,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23767,
+                  "src": "762:7:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IOutbox_$23811",
+                    "typeString": "contract IOutbox"
+                  },
+                  "typeName": {
+                    "id": 23764,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 23763,
+                      "name": "IOutbox",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 23811,
+                      "src": "762:7:15"
+                    },
+                    "referencedDeclaration": 23811,
+                    "src": "762:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IOutbox_$23811",
+                      "typeString": "contract IOutbox"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "761:9:15"
+            },
+            "scope": 23782,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 23775,
+            "nodeType": "FunctionDefinition",
+            "src": "952:75:15",
+            "documentation": {
+              "id": 23768,
+              "nodeType": "StructuredDocumentation",
+              "src": "775:174:15",
+              "text": " @notice Determine whether _potentialReplica is an enrolled Replica from the xAppConnectionManager\n @return True if _potentialReplica is an enrolled Replica"
+            },
+            "functionSelector": "5190bc53",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isReplica",
+            "nameLocation": "961:9:15",
+            "parameters": {
+              "id": 23771,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23770,
+                  "mutability": "mutable",
+                  "name": "_potentialReplica",
+                  "nameLocation": "979:17:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23775,
+                  "src": "971:25:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 23769,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "971:7:15",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "970:27:15"
+            },
+            "returnParameters": {
+              "id": 23774,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23773,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23775,
+                  "src": "1021:4:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 23772,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1021:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1020:6:15"
+            },
+            "scope": 23782,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 23781,
+            "nodeType": "FunctionDefinition",
+            "src": "1138:54:15",
+            "documentation": {
+              "id": 23776,
+              "nodeType": "StructuredDocumentation",
+              "src": "1031:104:15",
+              "text": " @notice Get the local domain from the xAppConnectionManager\n @return The local domain"
+            },
+            "functionSelector": "8d3638f4",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "localDomain",
+            "nameLocation": "1147:11:15",
+            "parameters": {
+              "id": 23777,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1158:2:15"
+            },
+            "returnParameters": {
+              "id": 23780,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23779,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23781,
+                  "src": "1184:6:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 23778,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1184:6:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1183:8:15"
+            },
+            "scope": 23782,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IConnectorManager",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 23760,
+          "nodeType": "StructuredDocumentation",
+          "src": "111:354:15",
+          "text": " @notice Each router extends the `XAppConnectionClient` contract. This contract\n allows an admin to call `setXAppConnectionManager` to update the underlying\n pointers to the messaging inboxes (Replicas) and outboxes (Homes).\n @dev This interface only contains the functions needed for the `XAppConnectionClient`\n will interface with."
+        },
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          23782
+        ],
+        "name": "IConnectorManager",
+        "nameLocation": "476:17:15",
+        "scope": 23783,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT OR Apache-2.0"
+  },
+  "id": 15
+}

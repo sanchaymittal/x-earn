@@ -1,0 +1,596 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "messageHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "leafIndex",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint64",
+          "name": "destinationAndNonce",
+          "type": "uint64"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "committedRoot",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "message",
+          "type": "bytes"
+        }
+      ],
+      "name": "Dispatch",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint32",
+          "name": "_destinationDomain",
+          "type": "uint32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_recipientAddress",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_messageBody",
+          "type": "bytes"
+        }
+      ],
+      "name": "dispatch",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "dispatch(uint32,bytes32,bytes)": "fa31de01"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.15+commit.e14f2714\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"messageHash\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"leafIndex\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint64\",\"name\":\"destinationAndNonce\",\"type\":\"uint64\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"committedRoot\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"message\",\"type\":\"bytes\"}],\"name\":\"Dispatch\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"_destinationDomain\",\"type\":\"uint32\"},{\"internalType\":\"bytes32\",\"name\":\"_recipientAddress\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_messageBody\",\"type\":\"bytes\"}],\"name\":\"dispatch\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"These are the Home.sol interface methods used by the `Router` and exposed via `home()` on the `XAppConnectionClient`\",\"events\":{\"Dispatch(bytes32,uint256,uint64,bytes32,bytes)\":{\"params\":{\"committedRoot\":\"the latest notarized root submitted in the last signed Update\",\"destinationAndNonce\":\"Destination and destination-specific nonce combined in single field ((destination << 32) & nonce)\",\"leafIndex\":\"Index of message's leaf in merkle tree\",\"message\":\"Raw bytes of message\",\"messageHash\":\"Hash of message; the leaf inserted to the Merkle tree for the message\"}}},\"kind\":\"dev\",\"methods\":{\"dispatch(uint32,bytes32,bytes)\":{\"details\":\"Format the message, insert its hash into Merkle tree, enqueue the new Merkle root, and emit `Dispatch` event with message information.\",\"params\":{\"_destinationDomain\":\"Domain of destination chain\",\"_messageBody\":\"Raw bytes content of message\",\"_recipientAddress\":\"Address of recipient on destination chain as bytes32\"},\"returns\":{\"_0\":\"bytes32 The leaf added to the tree\"}}},\"version\":1},\"userdoc\":{\"events\":{\"Dispatch(bytes32,uint256,uint64,bytes32,bytes)\":{\"notice\":\"Emitted when a new message is added to an outbound message merkle root\"}},\"kind\":\"user\",\"methods\":{\"dispatch(uint32,bytes32,bytes)\":{\"notice\":\"Dispatch the message it to the destination domain & recipient\"}},\"notice\":\"Interface for all contracts sending messages originating on their current domain.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IOutbox.sol\":\"IOutbox\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":20000},\"remappings\":[\":@aave/=lib/aave-v3-core/\",\":@chainlink/=lib/cellar-contracts/lib/chainlink/\",\":@clones/=lib/clones-with-immutable-args/src/\",\":@connext/nxtp-contracts/contracts/=lib/nxtp/packages/deployments/contracts/contracts/\",\":@ds-test/=lib/cellar-contracts/lib/forge-std/lib/ds-test/src/\",\":@ds/=lib/ds-test/src/\",\":@forge-std/=lib/cellar-contracts/lib/forge-std/src/\",\":@hardhat/=lib/hardhat/\",\":@openzeppelin/contracts-upgradeable/=lib/nxtp/packages/deployments/contracts/lib/openzeppelin-contracts-upgradeable/contracts/\",\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":@solmate/=lib/cellar-contracts/lib/solmate/src/\",\":@solmate/=lib/solmate/src/\",\":@std/=lib/forge-std/src/\",\":@uniswap/v3-core/=lib/cellar-contracts/lib/v3-core/\",\":@uniswap/v3-periphery/=lib/cellar-contracts/lib/v3-periphery/\",\":@uniswapV3C/=lib/cellar-contracts/lib/v3-core.git/contracts/\",\":@uniswapV3P/=lib/cellar-contracts/lib/v3-periphery.git/contracts/\",\":cellar-contracts/=lib/cellar-contracts/src/\",\":cellar/=lib/cellar-contracts/\",\":chainlink/=lib/cellar-contracts/lib/chainlink/contracts/src/v0.8/dev/vendor/@arbitrum/nitro-contracts/src/\",\":ds-test/=lib/solmate/lib/ds-test/src/\",\":forge-std/=lib/forge-std/src/\",\":nxtp/=lib/nxtp/packages/deployments/contracts/contracts/\",\":openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/contracts/\",\":solmate/=lib/solmate/src/\",\":v3-core.git/=lib/cellar-contracts/lib/v3-core.git/contracts/\",\":v3-periphery.git/=lib/cellar-contracts/lib/v3-periphery.git/contracts/\"]},\"sources\":{\"lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IOutbox.sol\":{\"keccak256\":\"0xe6a213bd3c9e0c4dcf0e982cdef2a6a613a49b7bca3d6ad662c179e509de6c2b\",\"license\":\"MIT OR Apache-2.0\",\"urls\":[\"bzz-raw://cbca26ae40f9cf044896e3681c20a60f563a3e35f7f6bdb9365370fe874cfa9f\",\"dweb:/ipfs/QmaLNyciLs4MdHykXidZpFaXx97numdULMy5i5kAdy8KhU\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.15+commit.e14f2714"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "messageHash",
+              "type": "bytes32",
+              "indexed": true
+            },
+            {
+              "internalType": "uint256",
+              "name": "leafIndex",
+              "type": "uint256",
+              "indexed": true
+            },
+            {
+              "internalType": "uint64",
+              "name": "destinationAndNonce",
+              "type": "uint64",
+              "indexed": true
+            },
+            {
+              "internalType": "bytes32",
+              "name": "committedRoot",
+              "type": "bytes32",
+              "indexed": false
+            },
+            {
+              "internalType": "bytes",
+              "name": "message",
+              "type": "bytes",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "Dispatch",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint32",
+              "name": "_destinationDomain",
+              "type": "uint32"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "_recipientAddress",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes",
+              "name": "_messageBody",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "dispatch",
+          "outputs": [
+            {
+              "internalType": "bytes32",
+              "name": "",
+              "type": "bytes32"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "dispatch(uint32,bytes32,bytes)": {
+            "details": "Format the message, insert its hash into Merkle tree, enqueue the new Merkle root, and emit `Dispatch` event with message information.",
+            "params": {
+              "_destinationDomain": "Domain of destination chain",
+              "_messageBody": "Raw bytes content of message",
+              "_recipientAddress": "Address of recipient on destination chain as bytes32"
+            },
+            "returns": {
+              "_0": "bytes32 The leaf added to the tree"
+            }
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "dispatch(uint32,bytes32,bytes)": {
+            "notice": "Dispatch the message it to the destination domain & recipient"
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        ":@aave/=lib/aave-v3-core/",
+        ":@chainlink/=lib/cellar-contracts/lib/chainlink/",
+        ":@clones/=lib/clones-with-immutable-args/src/",
+        ":@connext/nxtp-contracts/contracts/=lib/nxtp/packages/deployments/contracts/contracts/",
+        ":@ds-test/=lib/cellar-contracts/lib/forge-std/lib/ds-test/src/",
+        ":@ds/=lib/ds-test/src/",
+        ":@forge-std/=lib/cellar-contracts/lib/forge-std/src/",
+        ":@hardhat/=lib/hardhat/",
+        ":@openzeppelin/contracts-upgradeable/=lib/nxtp/packages/deployments/contracts/lib/openzeppelin-contracts-upgradeable/contracts/",
+        ":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+        ":@solmate/=lib/cellar-contracts/lib/solmate/src/",
+        ":@solmate/=lib/solmate/src/",
+        ":@std/=lib/forge-std/src/",
+        ":@uniswap/v3-core/=lib/cellar-contracts/lib/v3-core/",
+        ":@uniswap/v3-periphery/=lib/cellar-contracts/lib/v3-periphery/",
+        ":@uniswapV3C/=lib/cellar-contracts/lib/v3-core.git/contracts/",
+        ":@uniswapV3P/=lib/cellar-contracts/lib/v3-periphery.git/contracts/",
+        ":cellar-contracts/=lib/cellar-contracts/src/",
+        ":cellar/=lib/cellar-contracts/",
+        ":chainlink/=lib/cellar-contracts/lib/chainlink/contracts/src/v0.8/dev/vendor/@arbitrum/nitro-contracts/src/",
+        ":ds-test/=lib/solmate/lib/ds-test/src/",
+        ":forge-std/=lib/forge-std/src/",
+        ":nxtp/=lib/nxtp/packages/deployments/contracts/contracts/",
+        ":openzeppelin-contracts-upgradeable/=lib/openzeppelin-contracts-upgradeable/contracts/",
+        ":openzeppelin-contracts/=lib/openzeppelin-contracts/contracts/",
+        ":solmate/=lib/solmate/src/",
+        ":v3-core.git/=lib/cellar-contracts/lib/v3-core.git/contracts/",
+        ":v3-periphery.git/=lib/cellar-contracts/lib/v3-periphery.git/contracts/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 20000
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IOutbox.sol": "IOutbox"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IOutbox.sol": {
+        "keccak256": "0xe6a213bd3c9e0c4dcf0e982cdef2a6a613a49b7bca3d6ad662c179e509de6c2b",
+        "urls": [
+          "bzz-raw://cbca26ae40f9cf044896e3681c20a60f563a3e35f7f6bdb9365370fe874cfa9f",
+          "dweb:/ipfs/QmaLNyciLs4MdHykXidZpFaXx97numdULMy5i5kAdy8KhU"
+        ],
+        "license": "MIT OR Apache-2.0"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "lib/nxtp/packages/deployments/contracts/contracts/messaging/interfaces/IOutbox.sol",
+    "id": 23812,
+    "exportedSymbols": {
+      "IOutbox": [
+        23811
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "46:1596:16",
+    "nodes": [
+      {
+        "id": 23784,
+        "nodeType": "PragmaDirective",
+        "src": "46:23:16",
+        "literals": [
+          "solidity",
+          "0.8",
+          ".15"
+        ]
+      },
+      {
+        "id": 23811,
+        "nodeType": "ContractDefinition",
+        "src": "306:1335:16",
+        "nodes": [
+          {
+            "id": 23798,
+            "nodeType": "EventDefinition",
+            "src": "843:169:16",
+            "anonymous": false,
+            "documentation": {
+              "id": 23786,
+              "nodeType": "StructuredDocumentation",
+              "src": "328:512:16",
+              "text": " @notice Emitted when a new message is added to an outbound message merkle root\n @param leafIndex Index of message's leaf in merkle tree\n @param destinationAndNonce Destination and destination-specific\n nonce combined in single field ((destination << 32) & nonce)\n @param messageHash Hash of message; the leaf inserted to the Merkle tree for the message\n @param committedRoot the latest notarized root submitted in the last signed Update\n @param message Raw bytes of message"
+            },
+            "eventSelector": "9d4c83d2e57d7d381feb264b44a5015e7f9ef26340f4fc46b558a6dc16dd811a",
+            "name": "Dispatch",
+            "nameLocation": "849:8:16",
+            "parameters": {
+              "id": 23797,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23788,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "messageHash",
+                  "nameLocation": "879:11:16",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23798,
+                  "src": "863:27:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 23787,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "863:7:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 23790,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "leafIndex",
+                  "nameLocation": "912:9:16",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23798,
+                  "src": "896:25:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 23789,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "896:7:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 23792,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "destinationAndNonce",
+                  "nameLocation": "942:19:16",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23798,
+                  "src": "927:34:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint64",
+                    "typeString": "uint64"
+                  },
+                  "typeName": {
+                    "id": 23791,
+                    "name": "uint64",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "927:6:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint64",
+                      "typeString": "uint64"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 23794,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "committedRoot",
+                  "nameLocation": "975:13:16",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23798,
+                  "src": "967:21:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 23793,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "967:7:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 23796,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "message",
+                  "nameLocation": "1000:7:16",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23798,
+                  "src": "994:13:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 23795,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "994:5:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "857:154:16"
+            }
+          },
+          {
+            "id": 23810,
+            "nodeType": "FunctionDefinition",
+            "src": "1497:142:16",
+            "documentation": {
+              "id": 23799,
+              "nodeType": "StructuredDocumentation",
+              "src": "1016:478:16",
+              "text": " @notice Dispatch the message it to the destination domain & recipient\n @dev Format the message, insert its hash into Merkle tree,\n enqueue the new Merkle root, and emit `Dispatch` event with message information.\n @param _destinationDomain Domain of destination chain\n @param _recipientAddress Address of recipient on destination chain as bytes32\n @param _messageBody Raw bytes content of message\n @return bytes32 The leaf added to the tree"
+            },
+            "functionSelector": "fa31de01",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "dispatch",
+            "nameLocation": "1506:8:16",
+            "parameters": {
+              "id": 23806,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23801,
+                  "mutability": "mutable",
+                  "name": "_destinationDomain",
+                  "nameLocation": "1527:18:16",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23810,
+                  "src": "1520:25:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 23800,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1520:6:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 23803,
+                  "mutability": "mutable",
+                  "name": "_recipientAddress",
+                  "nameLocation": "1559:17:16",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23810,
+                  "src": "1551:25:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 23802,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1551:7:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 23805,
+                  "mutability": "mutable",
+                  "name": "_messageBody",
+                  "nameLocation": "1595:12:16",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23810,
+                  "src": "1582:25:16",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 23804,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1582:5:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1514:97:16"
+            },
+            "returnParameters": {
+              "id": 23809,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 23808,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 23810,
+                  "src": "1630:7:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 23807,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1630:7:16",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1629:9:16"
+            },
+            "scope": 23811,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IOutbox",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 23785,
+          "nodeType": "StructuredDocumentation",
+          "src": "71:234:16",
+          "text": " @notice Interface for all contracts sending messages originating on their\n current domain.\n @dev These are the Home.sol interface methods used by the `Router`\n and exposed via `home()` on the `XAppConnectionClient`"
+        },
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          23811
+        ],
+        "name": "IOutbox",
+        "nameLocation": "316:7:16",
+        "scope": 23812,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT OR Apache-2.0"
+  },
+  "id": 16
+}
