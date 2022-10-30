@@ -35,7 +35,7 @@ deploy-goerli :; @forge script script/${contract}.s.sol:Deploy${contract} --sig 
 
 deploy-run :; @forge script script/${contract}.s.sol:Deploy${contract} --sig "run()"  --rpc-url ${TESTNET_RPC_URL}  --private-key ${PRIVATE_KEY} --broadcast --verify --etherscan-api-key ${POLYGONSCAN_API_KEY}  -vvvv
 
-deploy-target-cronos :; @forge script script/${contract}.s.sol:Deploy${contract} --sig "run(address)" "${hub}" --rpc-url https://evm-t3.cronos.org --private-key ${PRIVATE_KEY} --broadcast --verify --etherscan-api-key ${ETHERSCAN_API_KEY}  -vvvv
+deploy-target-cronos :; @forge script script/${contract}.s.sol:Deploy${contract} --sig "run(address)" "${hub}" --rpc-url https://testnet.cronoslabs.com/v1/320a9adc6ac7a081240762ce00843d49 --private-key ${PRIVATE_KEY} --broadcast --verify --etherscan-api-key ${ETHERSCAN_API_KEY}  -vvvv
 deploy-target-polygon :; @forge script script/${contract}.s.sol:Deploy${contract} --sig "run(address)" "${hub}" --rpc-url https://rpc.ankr.com/polygon_mumbai  --private-key ${PRIVATE_KEY} --broadcast --verify --etherscan-api-key ${POLYGONSCAN_API_KEY}  -vvvv
 deploy-target-gnosis :; @forge script script/${contract}.s.sol:Deploy${contract} --sig "run(address)" "${hub}" --rpc-url https://rpc.chiadochain.net  --private-key ${PRIVATE_KEY} --broadcast --verify --etherscan-api-key ${ETHERSCAN_API_KEY}  -vvvv
 
