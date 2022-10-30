@@ -5,7 +5,7 @@
 <br/>
 <p align="center">
 <a href="https://chain.link" target="_blank">
-<img src="./img/flowchart@2x.png" width="225" alt="flowchart">
+<img src="./img/flowchart@2x.png" alt="flowchart">
 </a>
 </p>
 <br/>
