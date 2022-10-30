@@ -9,7 +9,7 @@ contract DeployHubAdapter is Script {
     function run() external {
         vm.startBroadcast();
 
-        address _connext = address(0x99A784d082476E551E5fc918ce3d849f2b8e89B6);
+        address _connext = address(0x13c96809fCF9f6542eb35c69B580dFa05ee9D70b);
         IConnext connext = IConnext(_connext);
 
         new HubAdapter(connext);
