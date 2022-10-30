@@ -53,7 +53,7 @@ contract CellarAdapter {
         path[1] = address(WETH);
 
         uint24[] memory poolFees = new uint24[](1);
-        poolFees[0] = 0; // 0.0%
+        poolFees[0] = 30000; // 3%
 
         bytes memory swapData = abi.encode(path, poolFees, amount, 0);
         received = swapWithUniV3(swapData, TEST, WETH);
