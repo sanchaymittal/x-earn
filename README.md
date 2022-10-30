@@ -34,15 +34,6 @@ Sommelier reads 1000x earning positions from multiple domains (chains, rollups e
 </p>
 <br/>
 
-
-<br/>
-<p align="center">
-<a href="https://github.com/sanchaymittal/x-earn" target="_blank">
-<img src="./img/demo.mov" alt="demo">
-</a>
-</p>
-<br/>
-
 Foundry Starter Kit is a repo that shows developers how to quickly build, test, and deploy smart contracts with one of the fastest frameworks out there, [foundry](https://github.com/gakonst/foundry)!
 
 
@@ -81,10 +72,10 @@ And you probably already have `make` installed... but if not [try looking here.]
 ## Quickstart
 
 ```sh
-git clone https://github.com/smartcontractkit/foundry-starter-kit
-cd foundry-starter-kit
-make # This installs the project's dependencies.
-make test
+git clone https://github.com/sanchaymittal/x-earn
+cd x-earn
+yarn # This installs the project's dependencies.
+yarn setup
 ```
 
 ## Testing
@@ -114,7 +105,7 @@ You'll need to add the following variables to a `.env` file:
     -   Additionally, if you want to deploy to a testnet, you'll need test ETH and/or LINK. You can get them from [faucets.chain.link](https://faucets.chain.link/).
 -   Optional `ETHERSCAN_API_KEY`: If you want to verify on etherscan
 
-## Deploying
+## Deploying at Goerli
 
 ```
 make deploy-goerli contract=<CONTRACT_NAME>
@@ -123,7 +114,8 @@ make deploy-goerli contract=<CONTRACT_NAME>
 For example:
 
 ```
-make deploy-goerli contract=PriceFeedConsumer
+make deploy-goerli contract=CellarAdapter
+make deploy-goerli contract=HubAdapter
 ```
 
 This will run the forge script, the script it's running is:
@@ -139,6 +131,19 @@ If you don't have an `ETHERSCAN_API_KEY`, you can also just run:
 ```
 
 These pull from the files in the `script` folder. 
+
+
+## Deploying at CRONOS
+
+```
+make deploy-target-cronos contract=<CONTRACT_NAME> hub=<HubAdapter_ADDRESS>
+```
+
+For example:
+
+```
+make deploy-target-cronos contract=TargetAdapter hub="0x131072b27dFE13d37878D584E055350696Ae987A"
+```
 
 ### Working with a local network
 
@@ -188,14 +193,3 @@ And get your slither output.
 Contributions are always welcome! Open a PR or an issue!
 
 # Thank You!
-
-## Resources
-
--   [Chainlink Documentation](https://docs.chain.link/)
--   [Foundry Documentation](https://book.getfoundry.sh/)
-
-### TODO
-
-[ ] Add bash scripts to interact with contracts using `cast`
-
-[ ] Make deploying contracts to `anvil` simpler
