@@ -57,29 +57,19 @@ contract HubAdapter {
         address target,
         AdaptorCall[] memory data
     ) external payable {
-        // function xcall(
-        //   uint32 _destination,
-        //   address _to,
-        //   address _asset,
-        //   address _delegate,
-        //   uint256 _amount,
-        //   uint256 _slippage,
-        //   bytes calldata _callData
-        // ) external payable returns (bytes32);
-
         bytes memory callData = abi.encodeWithSelector(
             bytes4(keccak256("callOnAdaptor(AdaptorCall[])")),
             data
         );
 
         connext.xcall(
-            destinationDomain,
-            target,
-            asset,
-            address(0),
-            amount,
-            0,
-            callData
+            destinationDomain, //   uint32 _destination,
+            target,            //   address _to,
+            asset,             //   address _asset,
+            address(0),        //   address _delegate,
+            amount,           //   uint256 _amount,
+            0,                //   uint256 _slippage, 
+            callData          //   bytes calldata _callData
         );
     }
 
